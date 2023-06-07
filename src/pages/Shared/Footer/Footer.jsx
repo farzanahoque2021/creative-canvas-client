@@ -1,7 +1,7 @@
 import img from '../../../assets/images/canvas-logo.png'
 const Footer = () => {
     return (
-        <div className='absolute w-full bottom-0'>
+        <div>
             <footer className="footer p-10 bg-neutral text-neutral-content">
                 <div>
                     <img className='w-40 h-20' src={img} alt="" />
