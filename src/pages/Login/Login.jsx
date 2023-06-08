@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { HiOutlineMail, HiEye, HiEyeOff } from 'react-icons/hi'
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from '../../assets/images/background4.jpg'
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 
 const Login = () => {
+
+    const { signIn } = useContext(AuthContext);
     const [show, setShow] = useState(false);
-    // const [error, setError] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
     // const [success, setSuccess] = useState('');
 
     const handleLogin = event => {
@@ -15,13 +23,23 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                setError('');
+                form.reset();
+                navigate(from, { replace: true });
+
+            })
+            .catch(error => {
+                setError(error.message)
+            })
     }
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${img})` }}>
             <div className="hero-content flex-col lg:flex-row">
-                <div className="mr-12 w-1/2">
-                    {/* <img className='rounded-lg' src={img} alt="" /> */}
-                </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-xl bg-slate-800 opacity-80">
                     <form onSubmit={handleLogin} className="card-body">
                         <h1 className="text-3xl text-center font-bold text-white">Login</h1>
@@ -45,7 +63,7 @@ const Login = () => {
                             </div>
 
                         </div>
-                        {/* <p className='mb-4 text-red-600'>{error}</p> */}
+                        <p className='mb-4 text-red-600'>{error}</p>
                         <div className="form-control mt-6">
                             <input className="btn btn-accent" type="submit" value="Login" />
                         </div>

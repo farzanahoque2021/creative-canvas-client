@@ -1,12 +1,16 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import img from '../../assets/images/background.jpg'
+import { AuthContext } from "../../Providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 
 const Register = () => {
-
+    const { createUser } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+
+    const navigate = useNavigate();
 
     const handleRegister = event => {
         event.preventDefault();
@@ -43,14 +47,34 @@ const Register = () => {
             return;
         }
 
+        createUser(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                setError('');
+                setSuccess('User account has been created successfully');
+                navigate('/');
+                updateUserData(loggedUser, name, photo)
+                form.reset();
+            })
+            .catch(error => {
+                setError(error.message)
+            })
+    }
+    const updateUserData = (user, name, photo) => {
+        updateProfile(user, {
+            displayName: name,
+            photoURL: photo
+        })
+            .then(() => {
+                console.log('Username updated');
+            })
+            .catch(error => {
+                setError(error.message)
+            })
     }
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${img})` }}>
             <div className="hero-content flex-col lg:flex-row">
-                {/* <div className="mr-12 w-1/2">
-                    <img src={img} alt="" />
-
-                </div> */}
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-xl bg-slate-800 opacity-80">
                     <div className="card-body">
                         <h1 className="text-3xl text-center text-white font-bold">Register</h1>
