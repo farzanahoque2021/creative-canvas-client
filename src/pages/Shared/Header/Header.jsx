@@ -33,7 +33,7 @@ const Header = () => {
                         <img src="https://img.freepik.com/free-photo/digital-painting-mountain-with-colorful-tree-foreground_1340-25699.jpg" />
                     </div>
                 </label>
-                <a className="btn btn-accent">Login</a>
+                <Link to="/login"><button className="btn btn-accent">Login</button></Link>
             </div>
         </div>
 
