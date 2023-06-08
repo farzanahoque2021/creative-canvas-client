@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { HiOutlineMail, HiEye, HiEyeOff } from 'react-icons/hi'
 import { Link } from "react-router-dom";
+import img from '../../assets/images/background4.jpg'
 
 
 const Login = () => {
@@ -16,17 +17,17 @@ const Login = () => {
         console.log(email, password)
     }
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen" style={{ backgroundImage: `url(${img})` }}>
             <div className="hero-content flex-col lg:flex-row">
                 <div className="mr-12 w-1/2">
                     {/* <img className='rounded-lg' src={img} alt="" /> */}
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-xl bg-slate-800 opacity-80">
                     <form onSubmit={handleLogin} className="card-body">
-                        <h1 className="text-3xl text-center font-bold">Login</h1>
+                        <h1 className="text-3xl text-center font-bold text-white">Login</h1>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text text-white">Email</span>
                             </label>
                             <div className="flex relative">
                                 <input type="email" name="email" placeholder="email" className="input input-bordered w-full" required />
@@ -35,7 +36,7 @@ const Login = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Password</span>
+                                <span className="label-text text-white">Password</span>
                             </label>
                             <div className="flex relative">
                                 <input type={show ? "text" : "password"} name="password" placeholder="password" className="input input-bordered w-full" required />
@@ -49,7 +50,7 @@ const Login = () => {
                             <input className="btn btn-accent" type="submit" value="Login" />
                         </div>
                     </form>
-                    <p className='my-4 text-center' >New to Creative Canvas? <Link className='text-sky-400 font-semibold' to="/register">Register</Link></p>
+                    <p className='my-4 text-center text-white' >New to Creative Canvas? <Link className='text-sky-400 font-semibold' to="/register">Register</Link></p>
                 </div>
             </div>
         </div>

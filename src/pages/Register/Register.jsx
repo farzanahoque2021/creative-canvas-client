@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import img from '../../assets/images/background.jpg'
 
 
 const Register = () => {
@@ -44,58 +45,58 @@ const Register = () => {
 
     }
     return (
-        <div className="hero min-h-screen">
+        <div className="hero min-h-screen" style={{ backgroundImage: `url(${img})` }}>
             <div className="hero-content flex-col lg:flex-row">
-                <div className="mr-12 w-1/2">
+                {/* <div className="mr-12 w-1/2">
+                    <img src={img} alt="" />
 
-                    {/* <img src={img} alt="" /> */}
-                </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                </div> */}
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-xl bg-slate-800 opacity-80">
                     <div className="card-body">
-                        <h1 className="text-3xl text-center font-bold">Register</h1>
+                        <h1 className="text-3xl text-center text-white font-bold">Register</h1>
                         {/* Form Code */}
                         <form onSubmit={handleRegister}>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Name</span>
+                                    <span className="label-text text-white">Name</span>
                                 </label>
                                 <input type="text" name="name" placeholder="Your name" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text text-white">Email</span>
                                 </label>
                                 <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                             </div>
 
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text text-white">Password</span>
                                 </label>
                                 <input type="password" name="password" placeholder="password" className="input input-bordered" required />
 
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Confirm Password</span>
+                                    <span className="label-text text-white">Confirm Password</span>
                                 </label>
                                 <input type="password" name="confirm" placeholder="confirm password" className="input input-bordered" required />
 
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">PhotoURL</span>
+                                    <span className="label-text text-white">PhotoURL</span>
                                 </label>
                                 <input type="url" placeholder="photourl" name="photourl" className="input input-bordered" required />
 
                             </div>
-                            <p className='mb-4 text-red-600'>{error}</p>
+                            <p className='mb-4 text-red-400'>{error}</p>
                             <div className="form-control mt-6">
                                 <input className="btn btn-accent" type="submit" value="Register"></input>
                             </div>
                         </form>
-                        <p className='my-4 text-center' >Already have an account in Creative Canvas? <Link className='text-sky-400 font-semibold' to="/login">Login</Link></p>
-                        <p className='mb-4 ml-8 text-green-600'>{success}</p>
+                        <p className='my-4 text-center text-white' >Already have an account in Creative Canvas? <Link className='text-sky-400 font-semibold' to="/login">Login</Link></p>
+                        <p className='mb-4 ml-8 text-green-400'>{success}</p>
                     </div>
                 </div>
             </div>
