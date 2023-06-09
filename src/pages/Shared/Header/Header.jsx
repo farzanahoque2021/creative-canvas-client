@@ -1,7 +1,21 @@
 
 import { Link } from 'react-router-dom';
 import img from '../../../assets/images/canvas-logo.png'
+import { useContext } from 'react';
+import { AuthContext } from '../../../Providers/AuthProvider';
 const Header = () => {
+
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch(error => {
+                console.log(error.message)
+            })
+    }
     return (
         <div className="navbar bg-base-100 px-2 m-0">
             <div className="navbar-start">
@@ -13,7 +27,10 @@ const Header = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link>Instructors</Link></li>
                         <li><Link>Classes</Link></li>
-                        <li><Link>Dashboard</Link></li>
+                        {
+                            user ? <> <li className='text-base  text-yellow-500'><Link>Dashboard</Link></li></> : ""
+                        }
+
                     </ul>
                 </div>
                 <img className='w-40 h-20' src={img} alt="" />
@@ -24,16 +41,19 @@ const Header = () => {
                     <li className='text-base text-sky-500'><Link to="/">Home</Link></li>
                     <li className='text-base text-orange-400 '><Link>Instructors</Link></li>
                     <li className='text-base text-green-500'><Link>Classes</Link></li>
-                    <li className='text-base  text-yellow-500'><Link>Dashboard</Link></li>
+                    {
+                        user ? <> <li className='text-base  text-yellow-500'><Link>Dashboard</Link></li></> : ""
+                    }
                 </ul>
             </div>
             <div className="navbar-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                        <img src="https://img.freepik.com/free-photo/digital-painting-mountain-with-colorful-tree-foreground_1340-25699.jpg" />
-                    </div>
-                </label>
-                <Link to="/login"><button className="btn btn-accent">Login</button></Link>
+                {
+                    user ? <div className='flex'><label className="btn btn-ghost btn-circle avatar tooltip tooltip-left tooltip-success mr-2" data-tip={user.displayName}>
+                        <div className="w-12 rounded-full">
+                            <img src={user.photoURL} />
+                        </div>
+                    </label><button onClick={handleLogOut} className="btn btn-accent">Log out</button></div> : <Link to="/login"><button className="btn btn-accent">Login</button></Link>
+                }
             </div>
         </div>
 
