@@ -4,6 +4,7 @@ import img from '../../assets/images/background.jpg'
 import { AuthContext } from "../../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Swal from 'sweetalert2'
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 
 const Register = () => {
@@ -126,8 +127,10 @@ const Register = () => {
                                 <input className="btn btn-accent" type="submit" value="Register"></input>
                             </div>
                         </form>
-                        <p className='my-4 text-center text-white' >Already have an account in Creative Canvas? <Link className='text-sky-400 font-semibold' to="/login">Login</Link></p>
-                        <p className='mb-4 ml-8 text-green-400'>{success}</p>
+                        <p className='my-2 mx-auto text-center text-white' >Already have an account in Creative Canvas? <Link className='text-sky-400 font-semibold' to="/login">Login</Link></p>
+                        <p className='ml-8 text-green-400'>{success}</p>
+                        <p className="text-white mx-auto">OR, Register With Google</p>
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

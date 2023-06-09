@@ -5,6 +5,7 @@ import img from '../../assets/images/background4.jpg'
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from 'sweetalert2'
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 
 const Login = () => {
@@ -76,6 +77,8 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='my-4 text-center text-white' >New to Creative Canvas? <Link className='text-sky-400 font-semibold' to="/register">Register</Link></p>
+
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>
