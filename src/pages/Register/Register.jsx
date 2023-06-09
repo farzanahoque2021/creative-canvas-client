@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import img from '../../assets/images/background.jpg'
 import { AuthContext } from "../../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import Swal from 'sweetalert2'
 
 
 const Register = () => {
@@ -54,6 +55,12 @@ const Register = () => {
                 setSuccess('User account has been created successfully');
                 navigate('/');
                 updateUserData(loggedUser, name, photo)
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'User Registered Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                })
                 form.reset();
             })
             .catch(error => {

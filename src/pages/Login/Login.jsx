@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from '../../assets/images/background4.jpg'
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from 'sweetalert2'
 
 
 const Login = () => {
@@ -30,6 +31,12 @@ const Login = () => {
                 console.log(loggedUser)
                 setError('');
                 form.reset();
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'User Logged In Successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                })
                 navigate(from, { replace: true });
 
             })
