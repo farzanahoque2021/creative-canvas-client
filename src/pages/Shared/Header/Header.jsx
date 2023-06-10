@@ -39,8 +39,8 @@ const Header = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <li className='text-base text-sky-500'><Link to="/">Home</Link></li>
-                    <li className='text-base text-orange-400 '><Link>Instructors</Link></li>
-                    <li className='text-base text-green-500'><Link>Classes</Link></li>
+                    <li className='text-base text-orange-400 '><Link to="/instructors">Instructors</Link></li>
+                    <li className='text-base text-green-500'><Link to="/classes">Classes</Link></li>
                     {
                         user ? <> <li className='text-base  text-yellow-500'><Link>Dashboard</Link></li></> : ""
                     }
