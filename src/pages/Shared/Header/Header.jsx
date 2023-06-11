@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import img from '../../../assets/images/canvas-logo.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
+import { FaShoppingCart } from 'react-icons/fa'
+import useCart from '../../../hooks/useCart';
 const Header = () => {
 
     const { user, logOut } = useContext(AuthContext)
+    const [cart] = useCart();
 
     const handleLogOut = () => {
         logOut()
@@ -44,6 +47,8 @@ const Header = () => {
                     {
                         user ? <> <li className='text-base  text-yellow-500'><Link>Dashboard</Link></li></> : ""
                     }
+                    <li><Link to="/classes"><button className='btn gap-2'> <FaShoppingCart /><div className='badge badge-accent'>+{cart?.length || 0}</div>
+                    </button></Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
