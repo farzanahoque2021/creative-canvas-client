@@ -10,7 +10,7 @@ const usePopularInstructor = () => {
                 setPopularInstructor(data)
                 setLoading(false)
             })
-    }, [])
+    }, [popularInstructor])
     return [popularInstructor, loading]
 }
 export default usePopularInstructor;

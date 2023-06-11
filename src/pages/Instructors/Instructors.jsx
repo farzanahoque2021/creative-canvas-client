@@ -10,7 +10,7 @@ const Instructors = () => {
             .then(data => {
                 setInstructors(data)
             })
-    }, [])
+    }, [instructors])
     return (
         <div className="mb-8">
             <h2 className="text-3xl font-bold text-center mb-4">All instructors</h2>

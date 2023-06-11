@@ -10,7 +10,7 @@ const usePopularClass = () => {
                 setPopularClass(data)
                 setLoading(false)
             })
-    }, [])
+    }, [popularClass])
     return [popularClass, loading]
 }
 export default usePopularClass;
