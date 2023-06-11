@@ -47,7 +47,7 @@ const Header = () => {
                     {
                         user ? <> <li className='text-base  text-yellow-500'><Link to="/dashboard">Dashboard</Link></li></> : ""
                     }
-                    <li><Link to="/classes"><button className='btn gap-2'> <FaChalkboardTeacher /><div className='badge badge-accent'>+{cart?.length || 0}</div>
+                    <li><Link to="/dashboard/mycart"><button className='btn gap-2'> <FaChalkboardTeacher /><div className='badge badge-accent'>+{cart?.length || 0}</div>
                     </button></Link></li>
                 </ul>
             </div>
