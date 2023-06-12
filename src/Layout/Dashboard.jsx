@@ -9,6 +9,9 @@ import useCart from "../hooks/useCart";
 
 const Dashboard = () => {
     const [cart] = useCart();
+
+    const isAdmin = false;
+    const isInstructor = false;
     return (
         <div>
             <Header></Header>
@@ -22,21 +25,17 @@ const Dashboard = () => {
                 <div className="drawer-side rounded-xl">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 h-full bg-sky-100 text-base-content">
-
-                        <li><Link><FaHome />User Home</Link></li>
-                        <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes<span className="badge badge-accent">+{cart?.length || 0}</span></Link>
-                        </li>
-                        <li><Link><RiBookMarkFill />Enrolled Classes</Link></li>
-                        <li><Link><MdOutlinePayment />Payment History</Link></li>
-
-                        <li><Link><FaHome />Instructor Home</Link></li>
-                        <li><Link><FaChalkboardTeacher />Add a Class</Link></li>
-                        <li><Link><RiBookMarkFill />My Classes</Link></li>
-
-                        <li><Link><FaHome />Admin Home</Link></li>
-                        <li><Link><FaChalkboardTeacher />Manage Classes</Link></li>
-                        <li><Link><FaUsers />Manage Users</Link></li>
-
+                        {
+                            isAdmin ? <><li><Link><FaHome />Admin Home</Link></li>
+                                <li><Link><FaChalkboardTeacher />Manage Classes</Link></li>
+                                <li><Link><FaUsers />Manage Users</Link></li></> : isInstructor ? <><li><Link><FaHome />Instructor Home</Link></li>
+                                    <li><Link><FaChalkboardTeacher />Add a Class</Link></li>
+                                    <li><Link><RiBookMarkFill />My Classes</Link></li></> : <> <li><Link><FaHome />User Home</Link></li>
+                                <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes<span className="badge badge-accent">+{cart?.length || 0}</span></Link>
+                                </li>
+                                <li><Link><RiBookMarkFill />Enrolled Classes</Link></li>
+                                <li><Link><MdOutlinePayment />Payment History</Link></li></>
+                        }
                     </ul>
 
                 </div>
