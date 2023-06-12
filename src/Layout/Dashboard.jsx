@@ -33,7 +33,7 @@ const Dashboard = () => {
                             isAdmin ? <>
                                 <li><Link to="/dashboard/manageclass"><FaChalkboardTeacher />Manage Classes</Link></li>
                                 <li><Link to="/dashboard/allusers"><FaUsers />Manage Users</Link></li></> : isInstructor ? <>
-                                    <li><Link><FaChalkboardTeacher />Add a Class</Link></li>
+                                    <li><Link to="/dashboard/addclass"><FaChalkboardTeacher />Add a Class</Link></li>
                                     <li><Link><RiBookMarkFill />My Classes</Link></li></> : <>
                                 <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes<span className="badge badge-accent">+{cart?.length || 0}</span></Link>
                                 </li>
