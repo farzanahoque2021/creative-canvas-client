@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import Header from "../pages/Shared/Header/Header";
 import Footer from "../pages/Shared/Footer/Footer";
-import { FaChalkboardTeacher, FaHome } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaHome, FaUsers } from 'react-icons/fa';
 import { RiBookMarkFill } from 'react-icons/ri'
 import { MdOutlinePayment } from 'react-icons/md'
 
@@ -25,6 +25,14 @@ const Dashboard = () => {
                         <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes</Link></li>
                         <li><Link><RiBookMarkFill />Enrolled Classes</Link></li>
                         <li><Link><MdOutlinePayment />Payment History</Link></li>
+
+                        <li><Link><FaHome />Instructor Home</Link></li>
+                        <li><Link><FaChalkboardTeacher />Add a Class</Link></li>
+                        <li><Link><RiBookMarkFill />My Classes</Link></li>
+
+                        <li><Link><FaHome />Admin Home</Link></li>
+                        <li><Link><FaChalkboardTeacher />Manage Classes</Link></li>
+                        <li><Link><FaUsers />Manage Users</Link></li>
 
                     </ul>
 

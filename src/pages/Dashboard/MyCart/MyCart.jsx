@@ -44,7 +44,7 @@ const MyCart = () => {
 
                                 <td><button className="btn btn-outline btn-accent btn-xs">Pay</button></td>
                                 <th>
-                                    <button className="btn btn-outline btn-accent btn-xs">Delete</button>
+                                    <button className="btn btn-outline btn-error btn-xs">Delete</button>
                                 </th>
                             </tr>)
                         }
