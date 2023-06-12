@@ -2,13 +2,12 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import img from '../../assets/images/background.jpg'
 import { AuthContext } from "../../Providers/AuthProvider";
-import { updateProfile } from "firebase/auth";
 import Swal from 'sweetalert2'
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
@@ -52,33 +51,39 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
+                console.log(loggedUser)
                 setError('');
                 setSuccess('User account has been created successfully');
-                navigate('/');
-                updateUserData(loggedUser, name, photo)
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'User Registered Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Okay'
-                })
-                form.reset();
+                updateUserProfile(name, photo)
+                    .then(() => {
+                        const saveUser = { name: name, email: email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    form.reset();
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'User created successfully',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                    navigate('/');
+                                }
+                            })
+                    })
+                    .catch(error => {
+                        setError(error.message)
+                    })
             })
-            .catch(error => {
-                setError(error.message)
-            })
-    }
-    const updateUserData = (user, name, photo) => {
-        updateProfile(user, {
-            displayName: name,
-            photoURL: photo
-        })
-            .then(() => {
-                console.log('Username updated');
-            })
-            .catch(error => {
-                setError(error.message)
-            })
+
     }
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url(${img})` }}>

@@ -64,7 +64,7 @@ const ClassCard = ({ all }) => {
                     <p>Instructor Name: {instructor}</p>
                     <p>Available Seat: {seat}</p>
                     <p>Price: ${price}</p>
-                    <button onClick={() => handleAddToCart(all)} className="btn btn-accent w-1/3 mx-auto">Select</button>
+                    <button onClick={() => handleAddToCart(all)} className="btn btn-outline btn-accent w-1/3 mx-auto">Select</button>
 
                 </div>
 

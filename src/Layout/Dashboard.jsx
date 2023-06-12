@@ -4,9 +4,11 @@ import Footer from "../pages/Shared/Footer/Footer";
 import { FaChalkboardTeacher, FaHome, FaUsers } from 'react-icons/fa';
 import { RiBookMarkFill } from 'react-icons/ri'
 import { MdOutlinePayment } from 'react-icons/md'
+import useCart from "../hooks/useCart";
 
 
 const Dashboard = () => {
+    const [cart] = useCart();
     return (
         <div>
             <Header></Header>
@@ -22,7 +24,8 @@ const Dashboard = () => {
                     <ul className="menu p-4 w-80 h-full bg-sky-100 text-base-content">
 
                         <li><Link><FaHome />User Home</Link></li>
-                        <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes</Link></li>
+                        <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes<span className="badge badge-accent">+{cart?.length || 0}</span></Link>
+                        </li>
                         <li><Link><RiBookMarkFill />Enrolled Classes</Link></li>
                         <li><Link><MdOutlinePayment />Payment History</Link></li>
 
