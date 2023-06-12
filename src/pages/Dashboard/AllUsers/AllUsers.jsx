@@ -19,7 +19,26 @@ const AllUsers = () => {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: `${user.name} is admin`,
+                        title: `${user.name} is admin now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
+
+    const handleMakeInstructor = user => {
+        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is instructor now`,
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -50,7 +69,7 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.role !== 'admin' ? <button onClick={() => handleMakeAdmin(user)} className="btn btn-outline btn-accent btn-sm">Make Admin</button> : <button className="btn btn-outline btn-accent btn-sm">Admin</button>}</td>
-                                <td>{user.role !== 'instructor' ? <button className="btn btn-outline btn-info btn-sm">Make Instructor</button> : <button className="btn btn-outline btn-info btn-sm">Instructor</button>}</td>
+                                <td>{user.role !== 'instructor' ? <button onClick={() => handleMakeInstructor(user)} className="btn btn-outline btn-info btn-sm">Make Instructor</button> : <button className="btn btn-outline btn-info btn-sm">Instructor</button>}</td>
                             </tr>)
                         }
 
