@@ -5,13 +5,17 @@ import { FaChalkboardTeacher, FaUsers } from 'react-icons/fa';
 import { RiBookMarkFill } from 'react-icons/ri'
 import { MdOutlinePayment } from 'react-icons/md'
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 
 const Dashboard = () => {
     const [cart] = useCart();
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
 
-    const isAdmin = false;
-    const isInstructor = false;
+    // const isAdmin = false;
+    // const isInstructor = false;
     return (
         <div>
             <Header></Header>
