@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 
 const AllUsers = () => {
@@ -6,6 +7,25 @@ const AllUsers = () => {
         const res = await fetch('http://localhost:5000/users')
         return res.json();
     });
+
+    const handleMakeAdmin = user => {
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is admin`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
+    }
     return (
         <div className="w-full h-full p-6">
             <h2 className="text-3xl font-semibold">All Users: {users.length}</h2>
@@ -29,8 +49,8 @@ const AllUsers = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td><button className="btn btn-outline btn-accent btn-sm">Make Admin</button></td>
-                                <td><button className="btn btn-outline btn-info btn-sm">Make Instructor</button></td>
+                                <td>{user.role !== 'admin' ? <button onClick={() => handleMakeAdmin(user)} className="btn btn-outline btn-accent btn-sm">Make Admin</button> : <button className="btn btn-outline btn-accent btn-sm">Admin</button>}</td>
+                                <td>{user.role !== 'instructor' ? <button className="btn btn-outline btn-info btn-sm">Make Instructor</button> : <button className="btn btn-outline btn-info btn-sm">Instructor</button>}</td>
                             </tr>)
                         }
 
