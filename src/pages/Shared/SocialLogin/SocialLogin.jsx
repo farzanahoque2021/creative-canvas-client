@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc'
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2'
 
 const SocialLogin = () => {
     const { signInGoogle } = useContext(AuthContext)
@@ -16,13 +15,18 @@ const SocialLogin = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser)
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Signed In With Google Successfully',
-                    icon: 'success',
-                    confirmButtonText: 'Okay'
+                const saveUser = { name: loggedUser.displayName, email: loggedUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
                 })
-                navigate(from, { replace: true });
+                    .then(res => res.json())
+                    .then(() => {
+                        navigate(from, { replace: true });
+                    })
             })
     }
     return (
