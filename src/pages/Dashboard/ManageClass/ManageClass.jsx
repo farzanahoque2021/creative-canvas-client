@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const ManageClass = () => {
     const [axiosSecure] = useAxiosSecure();
-    const { data: allClass = [], refetch } = useQuery(['users'], async () => {
+    const { data: allClass = [], refetch } = useQuery(['allClass'], async () => {
         const res = await axiosSecure.get('/classes')
         return res.data;
     });
