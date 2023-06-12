@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import Header from "../pages/Shared/Header/Header";
 import Footer from "../pages/Shared/Footer/Footer";
-import { FaChalkboardTeacher, FaHome, FaUsers } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaUsers } from 'react-icons/fa';
 import { RiBookMarkFill } from 'react-icons/ri'
 import { MdOutlinePayment } from 'react-icons/md'
 import useCart from "../hooks/useCart";
@@ -10,7 +10,7 @@ import useCart from "../hooks/useCart";
 const Dashboard = () => {
     const [cart] = useCart();
 
-    const isAdmin = true;
+    const isAdmin = false;
     const isInstructor = false;
     return (
         <div>
@@ -26,11 +26,11 @@ const Dashboard = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 h-full bg-sky-100 text-base-content">
                         {
-                            isAdmin ? <><li><Link><FaHome />Admin Home</Link></li>
+                            isAdmin ? <>
                                 <li><Link to="/dashboard/manageclass"><FaChalkboardTeacher />Manage Classes</Link></li>
-                                <li><Link to="/dashboard/allusers"><FaUsers />Manage Users</Link></li></> : isInstructor ? <><li><Link><FaHome />Instructor Home</Link></li>
+                                <li><Link to="/dashboard/allusers"><FaUsers />Manage Users</Link></li></> : isInstructor ? <>
                                     <li><Link><FaChalkboardTeacher />Add a Class</Link></li>
-                                    <li><Link><RiBookMarkFill />My Classes</Link></li></> : <> <li><Link><FaHome />User Home</Link></li>
+                                    <li><Link><RiBookMarkFill />My Classes</Link></li></> : <>
                                 <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes<span className="badge badge-accent">+{cart?.length || 0}</span></Link>
                                 </li>
                                 <li><Link><RiBookMarkFill />Enrolled Classes</Link></li>
