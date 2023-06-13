@@ -77,7 +77,7 @@ const MyCart = () => {
                                 </td>
                                 <td><p>${row.price}</p></td>
 
-                                <td><Link to='/dashboard/payment' state={row.price}><button className="btn btn-outline btn-accent btn-xs">Pay</button></Link></td>
+                                <td><Link to={`/dashboard/payment/${row._id}`}><button className="btn btn-outline btn-accent btn-xs">Pay</button></Link></td>
                                 <th>
                                     <button onClick={() => handleDelete(row)} className="btn btn-outline btn-circle btn-error btn-sm"><FaTrashAlt /></button>
                                 </th>

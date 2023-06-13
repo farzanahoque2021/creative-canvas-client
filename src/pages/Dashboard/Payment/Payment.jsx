@@ -1,17 +1,18 @@
-import { useLocation } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+
 
 
 
 
 const Payment = () => {
-    const location = useLocation();
-    const state = location.state;
-    console.log(state)
+    const info = useLoaderData();
+    console.log(info)
+    const { price } = info;
 
     return (
         <div>
             <h2>Payment Page</h2>
-            <p>Price:${state}</p>
+            <p>Price:${price}</p>
 
         </div>
     );
