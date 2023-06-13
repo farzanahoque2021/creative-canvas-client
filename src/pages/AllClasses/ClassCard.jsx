@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 
 
 const ClassCard = ({ all }) => {
@@ -11,6 +13,9 @@ const ClassCard = ({ all }) => {
     const [, refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor()
+    const [clicked, setClicked] = useState(true);
 
     const handleAddToCart = all => {
         console.log(all)
@@ -26,6 +31,7 @@ const ClassCard = ({ all }) => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
+                        setClicked(false)
                         refetch();
                         Swal.fire({
                             position: 'top-end',
@@ -64,7 +70,7 @@ const ClassCard = ({ all }) => {
                     <p>Instructor Name: {instructor}</p>
                     <p>Available Seat: {seat}</p>
                     <p>Price: ${price}</p>
-                    <button onClick={() => handleAddToCart(all)} className="btn btn-outline btn-accent w-1/3 mx-auto">Select</button>
+                    <button onClick={() => handleAddToCart(all)} className="btn btn-outline btn-accent w-1/3 mx-auto" disabled={!seat || isInstructor || isAdmin || !clicked}>Select</button>
 
                 </div>
 

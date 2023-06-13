@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const ManageClass = () => {
@@ -94,7 +95,7 @@ const ManageClass = () => {
                                 <td>{row.status}</td>
                                 <td><button onClick={() => handleApprove(row._id)} className="btn btn-xs btn-outline btn-accent">Approve</button></td>
                                 <td><button onClick={() => handleDeny(row._id)} className="btn btn-xs btn-outline btn-error">Deny</button></td>
-                                <td><button className="btn btn-xs btn-outline btn-info">Send Feedback</button></td>
+                                <td><Link to="/dashboard/feedback" state={row._id}><button className="btn btn-xs btn-outline btn-info">Send Feedback</button></Link></td>
                             </tr>
                             )
                         }

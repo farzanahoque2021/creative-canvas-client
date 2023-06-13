@@ -6,7 +6,7 @@ const AllClasses = () => {
     const [allClass, setAllClass] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('http://localhost:5000/approvedclasses')
             .then(res => res.json())
             .then(data => {
                 setAllClass(data)

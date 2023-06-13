@@ -1,9 +1,5 @@
 import { useLoaderData } from "react-router-dom";
 
-
-
-
-
 const Payment = () => {
     const info = useLoaderData();
     console.log(info)
