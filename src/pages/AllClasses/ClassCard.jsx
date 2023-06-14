@@ -3,19 +3,15 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from 'sweetalert2'
 import { useLocation, useNavigate } from "react-router-dom";
 import useCart from "../../hooks/useCart";
-import useAdmin from "../../hooks/useAdmin";
-import useInstructor from "../../hooks/useInstructor";
 
 
 const ClassCard = ({ all }) => {
     const { user } = useContext(AuthContext)
     const { image, _id, name, instructor, seat, price } = all;
     const [, refetch] = useCart();
+    const [clicked, setClicked] = useState(true);
     const navigate = useNavigate();
     const location = useLocation();
-    const [isAdmin] = useAdmin();
-    const [isInstructor] = useInstructor()
-    const [clicked, setClicked] = useState(true);
 
     const handleAddToCart = all => {
         console.log(all)
@@ -44,21 +40,18 @@ const ClassCard = ({ all }) => {
                     }
                 })
         }
-        else {
-            Swal.fire({
-                title: 'Please login to select the class',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Login Now'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    navigate('/login', { state: { from: location } })
-                }
-            })
-
-        }
+        Swal.fire({
+            title: 'Please login to select the class',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Login Now'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate('/login', { state: { from: location } })
+            }
+        })
     }
 
     return (
@@ -70,7 +63,7 @@ const ClassCard = ({ all }) => {
                     <p>Instructor Name: {instructor}</p>
                     <p>Available Seat: {seat}</p>
                     <p>Price: ${price}</p>
-                    <button onClick={() => handleAddToCart(all)} className="btn btn-outline btn-accent w-1/3 mx-auto" disabled={!seat || isInstructor || isAdmin || !clicked}>Select</button>
+                    <button onClick={() => handleAddToCart(all)} className="btn btn-outline btn-accent w-1/3 mx-auto" disabled={!seat || !clicked}>Select</button>
 
                 </div>
 

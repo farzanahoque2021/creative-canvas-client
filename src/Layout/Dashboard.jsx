@@ -34,16 +34,19 @@ const Dashboard = () => {
 
                         {
                             isAdmin && <>
+                                <li>Admin Dashboard</li>
                                 <li><Link to="/dashboard/manageclass"><FaChalkboardTeacher />Manage Classes</Link></li>
                                 <li><Link to="/dashboard/allusers"><FaUsers />Manage Users</Link></li></>
                         }
                         {
                             isInstructor && <>
+                                <li>Instructor Dashboard</li>
                                 <li><Link to="/dashboard/addclass"><FaChalkboardTeacher />Add a Class</Link></li>
                                 <li><Link to="/dashboard/myclass"><RiBookMarkFill />My Classes</Link></li></>
                         }
                         {
                             !isAdmin && !isInstructor && <>
+                                <li>User Home</li>
                                 <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes<span className="badge badge-accent">+{cart?.length || 0}</span></Link>
                                 </li>
                                 <li><Link to="/dashboard/enrolled"><RiBookMarkFill />Enrolled Classes<span className="badge badge-accent">+{payment?.length || 0}</span></Link></li>
