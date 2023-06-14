@@ -15,7 +15,7 @@ const Feedback = () => {
         const updatedFeedback = { feedback }
         console.log(updatedFeedback)
 
-        fetch(`http://localhost:5000/feedback/${id}`, {
+        fetch(`https://creative-canvas-server-farzanahoque2021.vercel.app/feedback/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

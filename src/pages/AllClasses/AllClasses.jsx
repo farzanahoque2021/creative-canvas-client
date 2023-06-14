@@ -6,7 +6,7 @@ const AllClasses = () => {
     const [allClass, setAllClass] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/approvedclasses')
+        fetch('https://creative-canvas-server-farzanahoque2021.vercel.app/approvedclasses')
             .then(res => res.json())
             .then(data => {
                 setAllClass(data)

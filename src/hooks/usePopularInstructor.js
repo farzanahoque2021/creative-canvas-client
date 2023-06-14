@@ -4,7 +4,7 @@ const usePopularInstructor = () => {
     const [popularInstructor, setPopularInstructor] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('http://localhost:5000/popularinstructor')
+        fetch('https://creative-canvas-server-farzanahoque2021.vercel.app/popularinstructor')
             .then(res => res.json())
             .then(data => {
                 setPopularInstructor(data)

@@ -12,7 +12,7 @@ const ManageClass = () => {
     });
 
     const handleDeny = (id) => {
-        fetch(`http://localhost:5000/class/deny/${id}`, {
+        fetch(`https://creative-canvas-server-farzanahoque2021.vercel.app/class/deny/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -31,7 +31,7 @@ const ManageClass = () => {
     }
 
     const handleApprove = (id) => {
-        fetch(`http://localhost:5000/class/approve/${id}`, {
+        fetch(`https://creative-canvas-server-farzanahoque2021.vercel.app/class/approve/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

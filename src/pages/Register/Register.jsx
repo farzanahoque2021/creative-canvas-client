@@ -57,7 +57,7 @@ const Register = () => {
                 updateUserProfile(name, photo)
                     .then(() => {
                         const saveUser = { name: name, email: email }
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://creative-canvas-server-farzanahoque2021.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

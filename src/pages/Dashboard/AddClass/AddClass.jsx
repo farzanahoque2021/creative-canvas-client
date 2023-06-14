@@ -20,7 +20,7 @@ const AddClass = () => {
         const newClass = { name, image, instructor, instructorEmail, seat, price, studentNumber: 0, status: 'pending' }
         console.log(newClass)
 
-        fetch('http://localhost:5000/classes', {
+        fetch('https://creative-canvas-server-farzanahoque2021.vercel.app/classes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

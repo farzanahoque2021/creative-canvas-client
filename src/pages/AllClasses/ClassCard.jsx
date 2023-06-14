@@ -17,7 +17,7 @@ const ClassCard = ({ all }) => {
         console.log(all)
         if (user && user.email) {
             const cartItem = { classItemId: _id, name, image, price, email: user.email }
-            fetch('http://localhost:5000/carts', {
+            fetch('https://creative-canvas-server-farzanahoque2021.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -40,18 +40,20 @@ const ClassCard = ({ all }) => {
                     }
                 })
         }
-        Swal.fire({
-            title: 'Please login to select the class',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Login Now'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                navigate('/login', { state: { from: location } })
-            }
-        })
+        else {
+            Swal.fire({
+                title: 'Please login to select the class',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login Now'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } })
+                }
+            })
+        }
     }
 
     return (

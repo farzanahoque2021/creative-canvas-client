@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
             {
                 path: 'payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/carts/${params.id}`)
+                loader: ({ params }) => fetch(`https://creative-canvas-server-farzanahoque2021.vercel.app/carts/${params.id}`)
             },
             {
                 path: 'enrolled',
