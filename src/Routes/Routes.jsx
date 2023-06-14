@@ -17,6 +17,8 @@ import InstructorRoute from "./InstructorRoute";
 import MyAddedClass from "../pages/Dashboard/MyAddedClass/MyAddedClass";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import Feedback from "../pages/Dashboard/Feedback.jsx/Feedback";
+import Enrolled from "../pages/Dashboard/Enrolled/Enrolled";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/carts/${params.id}`)
             },
             {
+                path: 'enrolled',
+                element: <Enrolled></Enrolled>
+            },
+            {
+                path: 'history',
+                element: <PaymentHistory></PaymentHistory>
+            },
+            {
                 path: 'allusers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
@@ -73,11 +83,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'myclass',
-                element: <MyAddedClass></MyAddedClass>
+                element: <InstructorRoute><MyAddedClass></MyAddedClass></InstructorRoute>
             },
             {
                 path: 'feedback',
-                element: <Feedback></Feedback>
+                element: <AdminRoute><Feedback></Feedback></AdminRoute>
             }
         ]
     },

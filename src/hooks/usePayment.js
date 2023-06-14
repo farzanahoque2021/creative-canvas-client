@@ -3,20 +3,20 @@ import { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import useAxiosSecure from './useAxiosSecure';
 
-const useCart = () => {
+const usePayment = () => {
     const { user, loading } = useContext(AuthContext)
     const [axiosSecure] = useAxiosSecure();
-    const { refetch, data: cart = [] } = useQuery({
-        queryKey: ['carts', user?.email],
+    const { refetch, data: payment = [] } = useQuery({
+        queryKey: ['paymenthistory', user?.email],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axiosSecure(`/carts?email=${user?.email}`)
-            // console.log('res from axios', res)
+            const res = await axiosSecure(`/paymenthistory?email=${user?.email}`)
+            console.log('res from payment', res)
             return res.data;
         },
     })
-    return [cart, refetch]
+    return [payment, refetch]
 
 }
 
-export default useCart;
+export default usePayment;

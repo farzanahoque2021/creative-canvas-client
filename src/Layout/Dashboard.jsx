@@ -7,10 +7,12 @@ import { MdOutlinePayment } from 'react-icons/md'
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import usePayment from "../hooks/usePayment";
 
 
 const Dashboard = () => {
     const [cart] = useCart();
+    const [payment] = usePayment();
     const [isAdmin] = useAdmin();
     const [isInstructor] = useInstructor();
 
@@ -44,8 +46,8 @@ const Dashboard = () => {
                             !isAdmin && !isInstructor && <>
                                 <li><Link to="/dashboard/mycart"><FaChalkboardTeacher />Selected Classes<span className="badge badge-accent">+{cart?.length || 0}</span></Link>
                                 </li>
-                                <li><Link><RiBookMarkFill />Enrolled Classes</Link></li>
-                                <li><Link><MdOutlinePayment />Payment History</Link></li></>
+                                <li><Link to="/dashboard/enrolled"><RiBookMarkFill />Enrolled Classes<span className="badge badge-accent">+{payment?.length || 0}</span></Link></li>
+                                <li><Link to="/dashboard/history"><MdOutlinePayment />Payment History</Link></li></>
                         }
                     </ul>
 
